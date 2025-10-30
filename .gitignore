@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.streamlit/
+data/
+.DS_Store
+Thumbs.db
+*.pyc
+*.pyo
+*.log
+

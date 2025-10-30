@@ -1,0 +1,14 @@
+pip>=23.3
+setuptools>=68
+wheel>=0.41
+
+# Prefer prebuilt wheels on Windows; allow pip to choose compatible versions
+pandas
+numpy
+plotly
+streamlit
+requests
+pycountry
+python-dateutil
+pyarrow
+
