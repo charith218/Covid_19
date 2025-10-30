@@ -8,7 +8,13 @@ OUTPUT = os.path.join("data", "covid_processed.parquet")
 
 
 def ensure_data_dir() -> None:
-    os.makedirs("data", exist_ok=True)
+    try:
+        print("[DEBUG] Running from cwd:", os.getcwd())
+        os.makedirs("data", exist_ok=True)
+        print("[DEBUG] Ensured 'data/' directory exists.")
+    except Exception as e:
+        print("[ERROR] Failed to create data directory:", e)
+        raise
 
 
 def make_country_series(start: datetime, days: int, seed: int = 0):
@@ -73,8 +79,10 @@ def build_sample_dataframe() -> pd.DataFrame:
 def main() -> None:
     ensure_data_dir()
     df = build_sample_dataframe()
+    print(f"[DEBUG] DataFrame shape: {df.shape}")
     df.to_parquet(OUTPUT, index=False)
     print(f"Sample dataset written to {OUTPUT}")
+    print(f"[DEBUG] File exists after save? {os.path.exists(OUTPUT)} | Full path: {os.path.abspath(OUTPUT)}")
 
 
 if __name__ == "__main__":
